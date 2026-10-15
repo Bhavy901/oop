@@ -3,10 +3,6 @@ package com.minibank.concurrency;
 import com.minibank.exception.InvalidAmountException;
 import com.minibank.model.Account;
 
-/**
- * Practical 9 (Part B)
- * Concurrent worker executing repeated deposits on a shared Account.
- */
 public class AccountWorker implements Runnable {
 
     private final Account account;

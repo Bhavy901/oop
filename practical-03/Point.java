@@ -1,12 +1,7 @@
 import java.util.Objects;
 
-/**
- * Practical 3 - Part A (Problem 1)
- * Distinct points using equals() and hashCode() contract.
- */
 public class Point {
 
-    // (a) Private fields and constructor
     private final int x;
     private final int y;
 
@@ -23,13 +18,11 @@ public class Point {
         return y;
     }
 
-    // (b) Override toString() to return "(x, y)"
     @Override
     public String toString() {
         return "(" + x + ", " + y + ")";
     }
 
-    // (c) Override equals(Object) and hashCode()
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -43,16 +36,15 @@ public class Point {
         return Objects.hash(x, y);
     }
 
-    // Driver main
     public static void main(String[] args) {
         System.out.println("=== Distinct Points Evaluation ===");
-        // (d) Build Point[] with repeated coordinates
+
         Point[] points = {
             new Point(1, 2),
             new Point(3, 4),
-            new Point(1, 2), // Repeat 1
+            new Point(1, 2),
             new Point(5, 6),
-            new Point(3, 4)  // Repeat 2
+            new Point(3, 4)
         };
 
         System.out.println("Points array:");
@@ -60,7 +52,6 @@ public class Point {
             System.out.println("  " + p);
         }
 
-        // (e) Count distinct points using equals()
         int distinctCount = 0;
         for (int i = 0; i < points.length; i++) {
             boolean alreadySeen = false;
@@ -75,7 +66,6 @@ public class Point {
             }
         }
 
-        // (f) Print "Distinct: N"
         System.out.println("Total points: " + points.length);
         System.out.println("Distinct: " + distinctCount);
     }

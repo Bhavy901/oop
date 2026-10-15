@@ -1,13 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Practical 8 - Part A (Problem 2)
- * Warehouse stock issue processing with custom checked exceptions and recovery.
- */
 public class StockWarehouse {
 
-    // Custom checked exception carrying shortfall
     public static class OutOfStockException extends Exception {
         private final int shortfall;
 
@@ -21,7 +16,6 @@ public class StockWarehouse {
         }
     }
 
-    // Custom checked exception for non-positive quantities
     public static class InvalidQuantityException extends Exception {
         public InvalidQuantityException(String message) {
             super(message);
@@ -66,12 +60,12 @@ public class StockWarehouse {
         warehouse.addItem("Keyboards", 20);
 
         StockRequest[] requests = {
-            new StockRequest("Laptops", 3),     // Valid
-            new StockRequest("Monitors", 8),    // OutOfStock (shortfall = 3)
-            new StockRequest("Keyboards", -5),  // InvalidQuantity
-            new StockRequest("Laptops", 7),     // Valid (uses remaining)
-            new StockRequest("Laptops", 2),     // OutOfStock (shortfall = 2)
-            new StockRequest("Keyboards", 15)   // Valid
+            new StockRequest("Laptops", 3),
+            new StockRequest("Monitors", 8),
+            new StockRequest("Keyboards", -5),
+            new StockRequest("Laptops", 7),
+            new StockRequest("Laptops", 2),
+            new StockRequest("Keyboards", 15)
         };
 
         for (StockRequest req : requests) {

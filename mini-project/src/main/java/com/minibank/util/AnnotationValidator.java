@@ -7,10 +7,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 7 (Part B)
- * Reflective annotation validator checking @Positive and @MaxLength constraints on fields.
- */
 public class AnnotationValidator {
 
     public static String[] validate(Object obj) {
@@ -21,7 +17,6 @@ public class AnnotationValidator {
         List<String> errors = new ArrayList<>();
         Class<?> clazz = obj.getClass();
 
-        // Traverse class hierarchy to inspect fields in superclasses as well
         while (clazz != null && clazz != Object.class) {
             Field[] fields = clazz.getDeclaredFields();
             for (Field field : fields) {
@@ -29,7 +24,6 @@ public class AnnotationValidator {
                 try {
                     Object val = field.get(obj);
 
-                    // Check @Positive annotation
                     if (field.isAnnotationPresent(Positive.class)) {
                         Positive positive = field.getAnnotation(Positive.class);
                         if (val instanceof Number num) {
@@ -39,7 +33,6 @@ public class AnnotationValidator {
                         }
                     }
 
-                    // Check @MaxLength annotation
                     if (field.isAnnotationPresent(MaxLength.class)) {
                         MaxLength maxLength = field.getAnnotation(MaxLength.class);
                         if (val != null) {

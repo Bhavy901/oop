@@ -1,16 +1,11 @@
 import java.util.regex.Pattern;
 
-/**
- * Practical 4 - Part A (Problem 1)
- * Password strength checker using regex rules.
- */
 public class PasswordChecker {
 
     private static final Pattern UPPERCASE_PATTERN = Pattern.compile(".*[A-Z].*");
     private static final Pattern DIGIT_PATTERN = Pattern.compile(".*[0-9].*");
     private static final Pattern SPECIAL_PATTERN = Pattern.compile(".*[^a-zA-Z0-9].*");
 
-    // (b) Write strength(String pw)
     public static String strength(String pw) {
         if (pw == null) return "Weak";
         int passedRules = countPassedRules(pw);
@@ -46,7 +41,6 @@ public class PasswordChecker {
         System.out.println("  -> Strength: " + strength(pw) + "\n");
     }
 
-    // (c) Driver main
     public static void main(String[] args) {
         System.out.println("=== Password Strength Evaluator ===");
         String[] testPasswords = {

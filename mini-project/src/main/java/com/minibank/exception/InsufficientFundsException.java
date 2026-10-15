@@ -1,10 +1,5 @@
 package com.minibank.exception;
 
-/**
- * Practical 8 (Part B)
- * Thrown when an account withdrawal exceeds available balance and overdraft parameters.
- * Carries the exact shortfall amount.
- */
 public class InsufficientFundsException extends BankException {
     private final long shortfall;
 

@@ -1,9 +1,5 @@
 package com.minibank.model;
 
-/**
- * Practical 5 (Part B)
- * Current Account with overdraft protection and 0.0% interest rate.
- */
 public class CurrentAccount extends Account {
     private static final long serialVersionUID = 1L;
 
@@ -15,7 +11,7 @@ public class CurrentAccount extends Account {
     }
 
     public CurrentAccount(String ownerName, long openingBalance) {
-        this(ownerName, openingBalance, 10000L); // Default overdraft limit Rs. 10000
+        this(ownerName, openingBalance, 10000L);
     }
 
     public long getOverdraftLimit() {
@@ -29,7 +25,7 @@ public class CurrentAccount extends Account {
 
     @Override
     public synchronized boolean canWithdraw(long amount) {
-        // Can withdraw as long as balance does not drop below -overdraftLimit
+
         return (this.balance - amount) >= -overdraftLimit;
     }
 

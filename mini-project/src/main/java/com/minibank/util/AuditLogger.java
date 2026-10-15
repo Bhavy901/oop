@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Practical 14 (Part B)
- * Reflective audit logger that intercepts and inspects service layer methods marked with @Audit.
- */
 public class AuditLogger {
 
     private static final List<String> auditTrail = Collections.synchronizedList(new ArrayList<>());

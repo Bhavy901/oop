@@ -1,17 +1,11 @@
-/**
- * Practical 2 - Part A (Problem 1)
- * Smart Thermostat with encapsulation, static state, and constructor chaining.
- */
 public class Thermostat {
 
-    // (a) Fields
     private String location;
     private int temperature;
     private static final int MIN = 16;
     private static final int MAX = 30;
     private static int activeCount = 0;
 
-    // (b) Constructor with location and startTemp
     public Thermostat(String location, int startTemp) {
         this.location = location;
         if (startTemp >= MIN && startTemp <= MAX) {
@@ -22,12 +16,10 @@ public class Thermostat {
         activeCount++;
     }
 
-    // (c) Constructor chaining with this(location, 22)
     public Thermostat(String location) {
         this(location, 22);
     }
 
-    // (d) raise()
     public void raise() {
         if (this.temperature < MAX) {
             this.temperature++;
@@ -36,7 +28,6 @@ public class Thermostat {
         }
     }
 
-    // (e) lower()
     public void lower() {
         if (this.temperature > MIN) {
             this.temperature--;
@@ -45,7 +36,6 @@ public class Thermostat {
         }
     }
 
-    // (f) getTemperature() (no setter) and static getActiveCount()
     public int getTemperature() {
         return this.temperature;
     }
@@ -58,7 +48,6 @@ public class Thermostat {
         return activeCount;
     }
 
-    // (g) main
     public static void main(String[] args) {
         System.out.println("=== Smart Thermostat Simulation ===");
         Thermostat t1 = new Thermostat("Living Room", 24);

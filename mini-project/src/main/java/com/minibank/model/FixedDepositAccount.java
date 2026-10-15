@@ -1,9 +1,5 @@
 package com.minibank.model;
 
-/**
- * Practical 5 (Part B)
- * Fixed Deposit Account offering higher yield (7.0%) but locked against premature withdrawal.
- */
 public class FixedDepositAccount extends Account {
     private static final long serialVersionUID = 1L;
 
@@ -15,7 +11,7 @@ public class FixedDepositAccount extends Account {
     }
 
     public FixedDepositAccount(String ownerName, long principalAmount) {
-        this(ownerName, principalAmount, 12); // Default 1 year tenure
+        this(ownerName, principalAmount, 12);
     }
 
     public int getTenureMonths() {
@@ -24,12 +20,12 @@ public class FixedDepositAccount extends Account {
 
     @Override
     public double interestRate() {
-        return 7.0; // 7.0% FD rate
+        return 7.0;
     }
 
     @Override
     public boolean canWithdraw(long amount) {
-        // Locked: premature withdrawal is prohibited
+
         return false;
     }
 

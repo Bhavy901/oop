@@ -1,35 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Practical 1 - Part A (Problem 3 - For Advanced Learners – home)
- * Rock-Paper-Scissors-Lizard-Spock using enum and switch expressions.
- */
 public class RPSLS {
 
-    // (a) Define an enum Move with ROCK, PAPER, SCISSORS, LIZARD, SPOCK.
     public enum Move {
         ROCK, PAPER, SCISSORS, LIZARD, SPOCK
     }
 
-    /**
-     * (b) Returns:
-     *  1 if a beats b
-     * -1 if b beats a
-     *  0 for a tie
-     *
-     * Rules:
-     * - Scissors cut Paper
-     * - Paper covers Rock
-     * - Rock crushes Lizard
-     * - Lizard poisons Spock
-     * - Spock smashes Scissors
-     * - Scissors decapitates Lizard
-     * - Lizard eats Paper
-     * - Paper disproves Spock
-     * - Spock vaporizes Rock
-     * - Rock crushes Scissors
-     */
     public static int winner(Move a, Move b) {
         if (a == b) {
             return 0;
@@ -63,7 +40,7 @@ public class RPSLS {
             while (userMove == null) {
                 System.out.print("Enter your move (ROCK, PAPER, SCISSORS, LIZARD, SPOCK): ");
                 if (!scanner.hasNext()) {
-                    // Fallback in case of automated test or EOF
+
                     userMove = allMoves[random.nextInt(allMoves.length)];
                     System.out.println(userMove);
                     break;
@@ -91,7 +68,6 @@ public class RPSLS {
             System.out.println("Current Score -> Player: " + userScore + " | Computer: " + computerScore);
         }
 
-        // (d) Print overall winner
         System.out.println("\n=== Game Summary ===");
         if (userScore > computerScore) {
             System.out.println("You win " + userScore + "–" + computerScore);

@@ -13,13 +13,6 @@ import com.minibank.util.Validator;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * MiniBank - Object-Oriented Banking Capstone Application
- *
- * Developed as part of Object-Oriented Programming (CEUE203)
- * Student: Bhavy Gol (ID: 25CS016)
- * Institution: FTE, CHARUSAT
- */
 public class MiniBank {
 
     public enum MenuOption {
@@ -61,20 +54,18 @@ public class MiniBank {
     }
 
     public static void main(String[] args) {
-        // Practical 1: Display BankInfo header
+
         BankInfo bankInfo = new BankInfo("MiniBank India", "CHARUSAT University Campus");
         System.out.println(bankInfo);
 
         System.out.println("Developed by: Bhavy Gol | Student ID: 25CS016 | Subject: CEUE203 (OOP)");
         System.out.println("--------------------------------------------------------\n");
 
-        // Practical 8: Try-with-resources with AutoCloseable session
         try (BankSession session = new BankSession("BranchManager-BhavyGol")) {
             BankService service = new BankService();
             Scanner scanner = new Scanner(System.in);
             boolean running = true;
 
-            // Seed sample accounts if store is empty for instant demo readiness
             if (service.listAccounts().isEmpty()) {
                 try {
                     service.openAccount("SAVINGS", "Riya Patel", 15000, 1000L);
@@ -107,7 +98,6 @@ public class MiniBank {
                     continue;
                 }
 
-                // Switch expression routing menu selections
                 switch (option) {
                     case OPEN_ACCOUNT -> handleOpenAccount(service, scanner);
                     case DEPOSIT -> handleDeposit(service, scanner);
@@ -149,7 +139,7 @@ public class MiniBank {
                 default -> "SAVINGS";
             };
 
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
             System.out.print("Enter Account Holder Name: ");
             String name = scanner.nextLine().trim();
 

@@ -1,7 +1,3 @@
-/**
- * Practical 5 - Part A (Problem 2)
- * Employee Payroll hierarchy demonstrating abstract methods, super constructor calls, and instanceof checks.
- */
 public class PayrollSystem {
 
     public abstract static class Employee {
@@ -93,7 +89,6 @@ public class PayrollSystem {
 
             System.out.printf("[%s] %-15s | Salary: Rs. %9.2f", emp.getId(), emp.getName(), salary);
 
-            // Use instanceof to add note only for interns
             if (emp instanceof Intern intern) {
                 System.out.print("  [NOTE: College Intern from " + intern.getUniversity() + " - Stipend Only]");
             }

@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Practical 14 - Part A (Problem 2 - For Advanced Learners – home)
- * Modular Layered Application with state persistence and self-verifying test suite.
- */
 public class LayeredAppPackagedDemo {
 
-    // Persistent Entity
     public static class Note implements Serializable {
         private static final long serialVersionUID = 1L;
         private final int id;
@@ -47,7 +42,6 @@ public class LayeredAppPackagedDemo {
         }
     }
 
-    // Repository / Persistence Layer
     public static class NoteRepository {
         public static void saveToFile(List<Note> notes, Path path) throws IOException {
             try (ObjectOutputStream oos = new ObjectOutputStream(Files.newOutputStream(path))) {
@@ -63,7 +57,6 @@ public class LayeredAppPackagedDemo {
         }
     }
 
-    // Test verifying save and reload state unchanged
     public static void testSaveAndReloadUnchanged(Path testFile) {
         System.out.println("Running test: verify Save and Reload preserves exact state...");
         List<Note> originalNotes = List.of(

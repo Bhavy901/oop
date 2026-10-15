@@ -7,11 +7,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Practical 10 & 12 (Part B)
- * Managed batch transaction processing engine utilizing ExecutorService
- * and ConcurrentHashMap to execute transactions concurrently and safely.
- */
 public class TransactionProcessor {
 
     private final ExecutorService executor;
@@ -22,7 +17,7 @@ public class TransactionProcessor {
     }
 
     public TransactionProcessor() {
-        this(4); // Default 4 threads
+        this(4);
     }
 
     public void registerAccount(Account account) {
@@ -55,9 +50,6 @@ public class TransactionProcessor {
         }
     }
 
-    /**
-     * Practical 10: Deadlock-free concurrent transfer between two accounts using strict lock ordering.
-     */
     public boolean transferSafely(String fromAccNum, String toAccNum, long amount) {
         Account from = sharedAccounts.get(fromAccNum);
         Account to = sharedAccounts.get(toAccNum);

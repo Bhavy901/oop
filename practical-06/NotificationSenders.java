@@ -1,19 +1,12 @@
-/**
- * Practical 6 - Part A (Problem 2)
- * Notification senders using functional interfaces, lambdas, and marker interfaces.
- */
 public class NotificationSenders {
 
-    // Functional interface
     @FunctionalInterface
     public interface Notifier {
         void send(String message);
     }
 
-    // Marker interface (interface with no methods)
     public interface Urgent {}
 
-    // Wrapper class to attach marker interface to any Notifier
     public static class UrgentNotifierWrapper implements Notifier, Urgent {
         private final Notifier delegate;
         private final String name;
@@ -33,7 +26,6 @@ public class NotificationSenders {
         }
     }
 
-    // Standard wrapper
     public static class StandardNotifierWrapper implements Notifier {
         private final Notifier delegate;
         private final String name;
@@ -56,12 +48,10 @@ public class NotificationSenders {
     public static void main(String[] args) {
         System.out.println("=== Broadcast Notification Service ===");
 
-        // Lambda expressions for sending notifications
         Notifier emailSender = msg -> System.out.println(" [EMAIL] Sending message via SMTP: " + msg);
         Notifier smsSender = msg -> System.out.println(" [SMS]   Sending message via Telecom Gateway: " + msg);
         Notifier pushSender = msg -> System.out.println(" [PUSH]  Sending push alert to mobile devices: " + msg);
 
-        // Mark SMS and Push as Urgent using marker interface wrapper
         Notifier[] notifiers = {
             new StandardNotifierWrapper("Standard Email", emailSender),
             new UrgentNotifierWrapper("Critical Security SMS", smsSender),

@@ -2,10 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Practical 6 - Part A (Problem 3 - For Advanced Learners – home)
- * Runtime discount engine selecting lambda rules dynamically.
- */
 public class DiscountEngine {
 
     @FunctionalInterface
@@ -19,13 +15,13 @@ public class DiscountEngine {
         System.out.println("=== Dynamic Retail Discount Engine ===");
 
         List<DiscountOption> options = new ArrayList<>();
-        // Lambda 1: 10% Seasonal Percentage Off
+
         options.add(new DiscountOption(1, "10% Festive Season Discount", price -> price * 0.90));
-        // Lambda 2: Flat Rs. 150 off on purchases above Rs. 500
+
         options.add(new DiscountOption(2, "Flat Rs. 150 OFF (min purchase Rs. 500)", price -> price > 500 ? price - 150 : price));
-        // Lambda 3: Buy 1 Get 50% Clearance
+
         options.add(new DiscountOption(3, "50% Clearance Flash Sale", price -> price * 0.50));
-        // Lambda 4: Student Special (20% off)
+
         options.add(new DiscountOption(4, "Student Special (20% OFF)", price -> price * 0.80));
 
         double[] cartPrices = { 250.0, 600.0, 1200.0, 4500.0, 80.0 };
@@ -44,7 +40,7 @@ public class DiscountEngine {
         }
 
         Scanner scanner = new Scanner(System.in);
-        int choice = 1; // Default
+        int choice = 1;
         System.out.print("\nEnter discount rule number (1-4) [default: 1]: ");
         if (scanner.hasNextInt()) {
             choice = scanner.nextInt();

@@ -4,10 +4,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 11 - Part A (Problem 3 - For Advanced Learners – home)
- * Directory tree walker using Java NIO Files.walkFileTree, producing an audit summary report.
- */
 public class DirectoryTreeReporter {
 
     public static class FileReportVisitor extends SimpleFileVisitor<Path> {
@@ -86,7 +82,7 @@ public class DirectoryTreeReporter {
 
         try {
             generateReport(targetDir, reportFile);
-            // Cleanup demo file
+
             Files.deleteIfExists(reportFile);
         } catch (IOException e) {
             System.err.println("Error generating report: " + e.getMessage());

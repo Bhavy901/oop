@@ -1,10 +1,5 @@
-/**
- * Practical 6 - Part A (Problem 1)
- * Remote Control using interfaces, default methods, anonymous classes, and lambdas.
- */
 public class RemoteControl {
 
-    // Interface Switchable with on(), off(), and default toggle()
     public interface Switchable {
         void on();
         void off();
@@ -72,7 +67,6 @@ public class RemoteControl {
         }
     }
 
-    // Functional interface deciding whether device may switch on given hour (0-23)
     @FunctionalInterface
     public interface SchedulePolicy {
         boolean canSwitchOn(Switchable device, int hour);
@@ -91,20 +85,18 @@ public class RemoteControl {
         }
 
         System.out.println("\n--- Policy Evaluation ---");
-        int currentHour = 23; // 11 PM (quiet night hours)
+        int currentHour = 23;
 
-        // 1. Supplied as Anonymous Class: Fans only allowed between 6 AM and 10 PM
         SchedulePolicy nightTimePolicyAnonymous = new SchedulePolicy() {
             @Override
             public boolean canSwitchOn(Switchable device, int hour) {
                 if (device instanceof Fan && (hour >= 22 || hour < 6)) {
-                    return false; // No loud fans late at night
+                    return false;
                 }
                 return true;
             }
         };
 
-        // 2. Supplied as Lambda Expression: Lights allowed between 18:00 and 24:00
         SchedulePolicy nightTimePolicyLambda = (device, hour) -> {
             if (device instanceof Light && (hour < 6 || hour > 23)) {
                 return false;

@@ -4,10 +4,6 @@ import com.minibank.model.Account;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Practical 4 (Part B)
- * Generates formatted multi-line account statement using StringBuilder.
- */
 public class StatementFormatter {
 
     public static String buildStatement(Account account) {

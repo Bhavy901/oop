@@ -1,9 +1,5 @@
 import java.util.*;
 
-/**
- * Practical 12 - Part A (Problem 1)
- * Word frequency counter using HashMap and sorting entries by frequency using Comparator.
- */
 public class WordFrequency {
 
     public static void main(String[] args) {
@@ -14,7 +10,6 @@ public class WordFrequency {
 
         System.out.println("Input Paragraph:\n\"" + paragraph + "\"\n");
 
-        // Normalize text and split into words
         String cleaned = paragraph.replaceAll("[^a-zA-Z0-9\\s]", "").toLowerCase();
         String[] words = cleaned.split("\\s+");
 
@@ -25,10 +20,8 @@ public class WordFrequency {
             }
         }
 
-        // Convert Map entries to a List for sorting
         List<Map.Entry<String, Integer>> entryList = new ArrayList<>(freqMap.entrySet());
 
-        // Sort by frequency (highest first); ties broken alphabetically by word
         Comparator<Map.Entry<String, Integer>> frequencyComparator = (e1, e2) -> {
             int cmp = e2.getValue().compareTo(e1.getValue());
             if (cmp != 0) {

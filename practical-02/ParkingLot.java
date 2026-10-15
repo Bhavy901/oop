@@ -1,10 +1,5 @@
-/**
- * Practical 2 - Part A (Problem 3 - For Advanced Learners – home)
- * Parking Lot capacity, occupancy, and revenue tracking.
- */
 public class ParkingLot {
 
-    // (a) Fields
     private int twoWheelers;
     private int fourWheelers;
     private final int twoCap;
@@ -18,7 +13,6 @@ public class ParkingLot {
         this.fourWheelers = 0;
     }
 
-    // (b) park(String type)
     public boolean park(String type) {
         if ("two".equalsIgnoreCase(type)) {
             if (twoWheelers < twoCap) {
@@ -46,7 +40,6 @@ public class ParkingLot {
         }
     }
 
-    // (c) leave(String type)
     public void leave(String type) {
         if ("two".equalsIgnoreCase(type)) {
             if (twoWheelers > 0) {
@@ -73,7 +66,6 @@ public class ParkingLot {
         return revenue;
     }
 
-    // (d) main method
     public static void main(String[] args) {
         System.out.println("=== Parking Lot Simulation ===");
         ParkingLot lot = new ParkingLot(2, 2);
@@ -82,14 +74,14 @@ public class ParkingLot {
 
         lot.park("two");
         lot.park("two");
-        lot.park("two"); // Should be Full
+        lot.park("two");
 
         lot.park("four");
         lot.park("four");
-        lot.park("four"); // Should be Full
+        lot.park("four");
 
         lot.leave("two");
-        lot.park("two"); // Now can park
+        lot.park("two");
 
         System.out.println("\n=== Final Summary ===");
         System.out.println("Final 2-Wheelers: " + lot.getTwoWheelers());

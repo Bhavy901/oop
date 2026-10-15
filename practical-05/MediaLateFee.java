@@ -1,7 +1,3 @@
-/**
- * Practical 5 - Part A (Problem 3 - For Advanced Learners – home)
- * Media hierarchy computing overdue late fees across a returned batch.
- */
 public class MediaLateFee {
 
     public abstract static class Media {
@@ -24,7 +20,6 @@ public class MediaLateFee {
         public abstract double computeLateFee();
     }
 
-    // Books: Rs. 2 per day late
     public static class Book extends Media {
         public Book(String title, int daysLate) {
             super(title, daysLate);
@@ -36,7 +31,6 @@ public class MediaLateFee {
         }
     }
 
-    // DVD: Rs. 5 per day late + Rs. 20 flat penalty if late more than 3 days
     public static class DVD extends Media {
         public DVD(String title, int daysLate) {
             super(title, daysLate);
@@ -47,13 +41,12 @@ public class MediaLateFee {
             if (getDaysLate() == 0) return 0;
             double fee = getDaysLate() * 5.0;
             if (getDaysLate() > 3) {
-                fee += 20.0; // flat penalty
+                fee += 20.0;
             }
             return fee;
         }
     }
 
-    // Video Game: Rs. 15 per day late, max capped at Rs. 200
     public static class VideoGame extends Media {
         public VideoGame(String title, int daysLate) {
             super(title, daysLate);
@@ -74,7 +67,7 @@ public class MediaLateFee {
             new VideoGame("The Legend of Zelda", 10),
             new Book("Java: The Complete Reference", 0),
             new DVD("Inception", 2),
-            new VideoGame("Cyberpunk 2077", 25) // Hit cap
+            new VideoGame("Cyberpunk 2077", 25)
         };
 
         double totalBatchFees = 0;

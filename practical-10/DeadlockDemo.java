@@ -1,7 +1,3 @@
-/**
- * Practical 10 - Part A (Problem 3 - For Advanced Learners – home)
- * Deadlock simulation and resolution using consistent lock hierarchy ordering.
- */
 public class DeadlockDemo {
 
     public static class Account {
@@ -30,13 +26,12 @@ public class DeadlockDemo {
         }
     }
 
-    // 1. Unsafe Transfer: locks in the arbitrary order passed (susceptible to Deadlock)
     public static void unsafeTransfer(Account from, Account to, double amount) {
         System.out.println(Thread.currentThread().getName() + " attempting to lock " + from.getId());
         synchronized (from) {
             System.out.println("  " + Thread.currentThread().getName() + " locked " + from.getId() + ", waiting for " + to.getId());
             try {
-                Thread.sleep(50); // Pause to let another thread acquire the second lock
+                Thread.sleep(50);
             } catch (InterruptedException ignored) {}
 
             synchronized (to) {
@@ -47,7 +42,6 @@ public class DeadlockDemo {
         }
     }
 
-    // 2. Safe Transfer: orders locks consistently by Account ID lexicographical comparison
     public static void safeTransfer(Account acc1, Account acc2, double amount, boolean from1to2) {
         Account firstLock = acc1.getId().compareTo(acc2.getId()) < 0 ? acc1 : acc2;
         Account secondLock = acc1.getId().compareTo(acc2.getId()) < 0 ? acc2 : acc1;
@@ -75,7 +69,6 @@ public class DeadlockDemo {
 
         System.out.println("\nInitial Balances -> ACC-101: " + accA.getBalance() + " | ACC-202: " + accB.getBalance());
 
-        // We demonstrate the SAFE transfer resolving deadlock:
         System.out.println("\n--- Running Concurrent Transfers with Consistent Lock Ordering ---");
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 5; i++) {

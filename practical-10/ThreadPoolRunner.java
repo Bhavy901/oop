@@ -2,10 +2,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Practical 10 - Part A (Problem 1)
- * Thread Pool runner demonstrating worker thread reuse using ExecutorService.
- */
 public class ThreadPoolRunner {
 
     public static class WorkerTask implements Runnable {
@@ -20,7 +16,7 @@ public class ThreadPoolRunner {
             String threadName = Thread.currentThread().getName();
             System.out.println("  [START] Task #" + taskId + " executing on thread: " + threadName);
             try {
-                // Simulate variable processing work
+
                 Thread.sleep(150);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -39,7 +35,7 @@ public class ThreadPoolRunner {
             pool.submit(new WorkerTask(i));
         }
 
-        pool.shutdown(); // Gracefully initiate shutdown
+        pool.shutdown();
 
         try {
             boolean terminated = pool.awaitTermination(5, TimeUnit.SECONDS);

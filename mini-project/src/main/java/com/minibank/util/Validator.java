@@ -2,10 +2,6 @@ package com.minibank.util;
 
 import java.util.regex.Pattern;
 
-/**
- * Practical 4 (Part B)
- * Compiled regular expression validators for customer and banking inputs.
- */
 public class Validator {
 
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9][0-9]{9}$");

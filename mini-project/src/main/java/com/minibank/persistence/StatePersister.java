@@ -7,10 +7,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 11 (Part B)
- * State persistence engine serializing and deserializing Account instances to disk.
- */
 public class StatePersister {
 
     public static void save(Account[] accounts, Path file) throws IOException {

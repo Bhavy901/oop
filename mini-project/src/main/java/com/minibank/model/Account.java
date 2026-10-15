@@ -11,11 +11,6 @@ import com.minibank.model.annotation.Positive;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * Practical 2, 3, 5, 6, 7, 8, 9, 11 & 12 (Part B)
- * Abstract base class for all Bank Accounts.
- * Thread-safe, serializable, comparable, and validated with reflection annotations.
- */
 public abstract class Account implements Transactable, InterestBearing, Comparable<Account>, Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -31,13 +26,11 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
 
     private boolean active;
 
-    // Static account number generator (e.g. AC0001)
     private static synchronized String generateAccountNumber() {
         accountCounter++;
         return String.format("AC%04d", accountCounter);
     }
 
-    // Constructor with ownerName and opening balance
     public Account(String ownerName, long openingBalance) {
         this.accountNumber = generateAccountNumber();
         this.ownerName = ownerName;
@@ -45,12 +38,10 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         this.active = true;
     }
 
-    // Constructor chaining using this(ownerName, 0)
     public Account(String ownerName) {
         this(ownerName, 0L);
     }
 
-    // Abstract methods defined for polymorphism
     @Override
     public abstract double interestRate();
 
@@ -58,7 +49,6 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
 
     public abstract String getAccountType();
 
-    // Practical 9: Thread-safe deposit
     @Override
     public synchronized void deposit(long amount) throws InvalidAmountException {
         if (amount <= 0) {
@@ -67,7 +57,6 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         this.balance += amount;
     }
 
-    // Practical 9: Thread-safe withdraw
     @Override
     public synchronized boolean withdraw(long amount) throws InsufficientFundsException, InvalidAmountException {
         if (amount <= 0) {
@@ -82,10 +71,6 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         return true;
     }
 
-    /**
-     * Practical 8 & 10: Thread-safe deadlock-free transfer between two accounts.
-     * Orders locks by account number to prevent circular wait deadlock.
-     */
     public void transfer(Account to, long amount) throws BankException {
         if (to == null) {
             throw new BankException("Recipient account cannot be null");
@@ -110,7 +95,7 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
                 } catch (BankException be) {
                     throw be;
                 } finally {
-                    // Audit / state tracking
+
                 }
             }
         }
@@ -120,7 +105,6 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         return balance;
     }
 
-    // Getters (Notice: NO public setter for balance to preserve encapsulation)
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -146,7 +130,6 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         this.active = active;
     }
 
-    // Practical 3: equals & hashCode contract on accountNumber
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -160,13 +143,11 @@ public abstract class Account implements Transactable, InterestBearing, Comparab
         return Objects.hash(accountNumber);
     }
 
-    // Practical 12: Comparable<Account> by accountNumber
     @Override
     public int compareTo(Account other) {
         return this.accountNumber.compareTo(other.accountNumber);
     }
 
-    // Practical 3: toString()
     @Override
     public String toString() {
         return String.format("%s | %-12s | %-14s | Balance: Rs. %8d | Active: %s",

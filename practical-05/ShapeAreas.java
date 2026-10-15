@@ -1,7 +1,3 @@
-/**
- * Practical 5 - Part A (Problem 1)
- * Shape areas demonstrating abstract classes and run-time polymorphism.
- */
 public class ShapeAreas {
 
     public abstract static class Shape {

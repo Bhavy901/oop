@@ -13,18 +13,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Practical 14 (Part B)
- * Automated Test Suite for MiniBank Capstone.
- *
- * Verifies:
- * 1. Deposits increase the balance accurately
- * 2. Withdrawals over permissible threshold throw InsufficientFundsException with correct shortfall
- * 3. High concurrency stress-testing: multiple concurrent threads depositing without race conditions
- * 4. Persistence round-trip integrity
- *
- * Student: Bhavy Gol (ID: 25CS016)
- */
 public class MiniBankTest {
 
     public static void main(String[] args) throws Exception {
@@ -81,7 +69,6 @@ public class MiniBankTest {
         }
     }
 
-    // 1. A deposit increases the balance
     public static void testDepositIncreasesBalance() throws Exception {
         SavingsAccount acc = new SavingsAccount("Test User", 5000, 1000);
         long initial = acc.getBalance();
@@ -91,14 +78,13 @@ public class MiniBankTest {
         }
     }
 
-    // 2. A withdrawal over the limit throws InsufficientFundsException
     public static void testWithdrawalOverLimitThrowsException() throws Exception {
         SavingsAccount acc = new SavingsAccount("Overdraft Tester", 2000, 1000);
         boolean caught = false;
         long expectedShortfall = 0;
 
         try {
-            // Available is 2000 - 1000 = 1000. Trying to withdraw 3000 should shortfall by 2000.
+
             acc.withdraw(3000);
         } catch (InsufficientFundsException ife) {
             caught = true;
@@ -113,7 +99,6 @@ public class MiniBankTest {
         }
     }
 
-    // 3. High concurrency stress-testing: 10 threads doing 1000 deposits of 1 each
     public static void testConcurrentDepositsKeepBalanceExact() throws Exception {
         SavingsAccount acc = new SavingsAccount("Concurrent User", 0, 0);
         int numThreads = 10;
@@ -145,7 +130,6 @@ public class MiniBankTest {
         }
     }
 
-    // 4. Persistence round-trip integrity
     public static void testPersistenceIntegrity() throws Exception {
         Path tempDir = Files.createTempDirectory("minibank_test_");
         Path testStore = tempDir.resolve("test_accounts.dat");
@@ -155,7 +139,6 @@ public class MiniBankTest {
         Account created = service.openAccount("SAVINGS", "Persisted User", 8000, 1000L);
         service.savePersistedState();
 
-        // Create new service loading from the same path
         BankService serviceReloaded = new BankService(testStore, testLogs);
         Account reloaded = serviceReloaded.getAccount(created.getAccountNumber());
 
@@ -166,7 +149,6 @@ public class MiniBankTest {
             throw new AssertionError("Reloaded balance mismatch! Expected 8000, got: " + reloaded.getBalance());
         }
 
-        // Cleanup
         Files.deleteIfExists(testStore);
         Files.deleteIfExists(testLogs.resolve("transactions.log"));
         Files.deleteIfExists(testLogs);

@@ -9,10 +9,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 11 (Part B)
- * Report generator inspecting transaction logs using Files.newDirectoryStream and BufferedReader.
- */
 public class ReportGenerator {
 
     public static String generateDailyReport(Path logsDir, Path reportOutputFile) throws IOException {
@@ -25,10 +21,9 @@ public class ReportGenerator {
         int totalTransactions = 0;
         List<String> fileSummaries = new ArrayList<>();
 
-        // Practical 11: Walk logs folder using Files.newDirectoryStream
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(logsDir)) {
             for (Path entry : stream) {
-                // Supplementary Practical 11: Skip empty files or files that do not end with .log
+
                 if (Files.isDirectory(entry) || !entry.getFileName().toString().endsWith(".log") || Files.size(entry) == 0) {
                     continue;
                 }

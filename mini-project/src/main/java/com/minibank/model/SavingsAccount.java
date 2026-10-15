@@ -1,9 +1,5 @@
 package com.minibank.model;
 
-/**
- * Practical 5 (Part B)
- * Savings Account with minimum balance requirement and 4.0% interest rate.
- */
 public class SavingsAccount extends Account {
     private static final long serialVersionUID = 1L;
 
@@ -15,7 +11,7 @@ public class SavingsAccount extends Account {
     }
 
     public SavingsAccount(String ownerName, long openingBalance) {
-        this(ownerName, openingBalance, 1000L); // Default min balance Rs. 1000
+        this(ownerName, openingBalance, 1000L);
     }
 
     public long getMinBalance() {

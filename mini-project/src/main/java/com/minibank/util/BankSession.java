@@ -1,9 +1,5 @@
 package com.minibank.util;
 
-/**
- * Practical 8 (Part B)
- * AutoCloseable banking session guaranteeing safe deterministic resource release.
- */
 public class BankSession implements AutoCloseable {
     private final String sessionUser;
     private final long startTime;

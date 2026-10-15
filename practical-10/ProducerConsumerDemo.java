@@ -1,10 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Practical 10 - Part A (Problem 2)
- * Bounded buffer producer-consumer coordinated using wait() and notify().
- */
 public class ProducerConsumerDemo {
 
     public static class BoundedBuffer {
@@ -22,7 +18,7 @@ public class ProducerConsumerDemo {
             }
             queue.add(value);
             System.out.println("  [PRODUCED] " + value + " | Buffer size: " + queue.size());
-            notifyAll(); // Notify waiting consumers
+            notifyAll();
         }
 
         public synchronized int consume() throws InterruptedException {
@@ -32,7 +28,7 @@ public class ProducerConsumerDemo {
             }
             int value = queue.remove();
             System.out.println("  [CONSUMED] " + value + " | Buffer size: " + queue.size());
-            notifyAll(); // Notify waiting producers
+            notifyAll();
             return value;
         }
     }
@@ -48,7 +44,7 @@ public class ProducerConsumerDemo {
             try {
                 for (int i = 1; i <= totalItems; i++) {
                     buffer.produce(i);
-                    Thread.sleep(80); // Simulate production pace
+                    Thread.sleep(80);
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -59,7 +55,7 @@ public class ProducerConsumerDemo {
             try {
                 for (int i = 1; i <= totalItems; i++) {
                     int val = buffer.consume();
-                    Thread.sleep(120); // Simulate consumer work
+                    Thread.sleep(120);
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

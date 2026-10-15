@@ -1,17 +1,12 @@
 import java.util.Scanner;
 
-/**
- * Practical 1 - Part A (Problem 2)
- * Toll booth simulation using Java records and switch expressions.
- */
 public class TollBooth {
 
-    // (a) Define a record Vehicle(String number, String type).
     public record Vehicle(String number, String type) {}
 
     public static void main(String[] args) {
         System.out.println("=== Automated Toll Booth System ===");
-        // (b) Keep a running toll total and three counters (bike, car, truck)
+
         int totalToll = 0;
         int bikeCount = 0;
         int carCount = 0;
@@ -21,7 +16,6 @@ public class TollBooth {
         System.out.println("Rates: bike -> 20, car -> 50, truck -> 150");
         System.out.println("Enter vehicle number (or type 'done' to finish):");
 
-        // (c) Loop until user types "done"
         while (true) {
             System.out.print("Enter vehicle number: ");
             if (!scanner.hasNext()) {
@@ -63,7 +57,6 @@ public class TollBooth {
             System.out.println("Vehicle [" + vehicle.number() + " - " + vehicle.type() + "] Toll: " + toll + ". Running Total: " + totalToll);
         }
 
-        // (d) Print total toll and type with highest count
         System.out.println("\n=== Toll Summary ===");
         System.out.println("Total toll: " + totalToll);
         System.out.println("Counts: bike=" + bikeCount + ", car=" + carCount + ", truck=" + truckCount);

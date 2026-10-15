@@ -5,20 +5,14 @@ import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-/**
- * Practical 7 - Part A (Problem 2)
- * Mini test runner using custom annotation @Run and reflection.
- */
 public class MiniTestRunner {
 
-    // Define @Run annotation
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
     public @interface Run {
         String description() default "";
     }
 
-    // Sample test class with various methods
     public static class SampleTestSuite {
 
         @Run(description = "Verify addition operation")
@@ -50,7 +44,7 @@ public class MiniTestRunner {
         }
 
         private void privateNonTestMethod() {
-            // Not a test
+
         }
     }
 

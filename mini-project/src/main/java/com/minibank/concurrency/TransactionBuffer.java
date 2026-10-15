@@ -4,10 +4,6 @@ import com.minibank.model.Command;
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- * Practical 10 (Part B)
- * Shared transaction buffer coordinating Producer and Consumer threads with wait() and notify().
- */
 public class TransactionBuffer {
 
     private final Queue<Command> queue = new LinkedList<>();

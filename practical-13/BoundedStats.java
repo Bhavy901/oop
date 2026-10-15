@@ -1,14 +1,5 @@
-/**
- * Practical 13 - Part A (Problem 2)
- * Bounded generic method calculating average for any Number subtype.
- */
 public class BoundedStats {
 
-    /**
-     * Bounded generic method: <N extends Number>
-     * Guarantees that elements have .doubleValue() available.
-     * Compiler will strictly reject non-Number types (like String, Thread, etc.).
-     */
     public static <N extends Number> double average(N[] values) {
         if (values == null || values.length == 0) {
             return 0.0;

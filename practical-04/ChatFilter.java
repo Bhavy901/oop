@@ -1,15 +1,10 @@
 import java.util.Scanner;
 
-/**
- * Practical 4 - Part A (Problem 2)
- * Chat-log filter parsing tokens with split and building reports with StringBuilder.
- */
 public class ChatFilter {
 
     public static void main(String[] args) {
         System.out.println("=== Chat Log Filter ===");
 
-        // (a) Sample log lines with one malformed line
         String[] logs = {
             "10:05 alice Hello there everyone",
             "10:06 bob Hi Alice",
@@ -36,10 +31,10 @@ public class ChatFilter {
         StringBuilder report = new StringBuilder();
 
         for (String logLine : logs) {
-            // (c) Split into time/user/message with split(" ", 3)
+
             String[] parts = logLine.split(" ", 3);
             if (parts.length < 3) {
-                // Skip lines that do not have 3 parts
+
                 continue;
             }
 
@@ -47,7 +42,6 @@ public class ChatFilter {
             String user = parts[1];
             String message = parts[2];
 
-            // (d) Case-insensitive match on message
             if (message.toLowerCase().contains(keyword.toLowerCase())) {
                 matchesCount++;
                 report.append(time)
@@ -59,7 +53,6 @@ public class ChatFilter {
             }
         }
 
-        // (e) Print "Matches: N" and built report
         System.out.println("Matches: " + matchesCount);
         if (matchesCount > 0) {
             System.out.print(report.toString());

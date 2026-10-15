@@ -1,9 +1,5 @@
 import java.util.EmptyStackException;
 
-/**
- * Practical 13 - Part A (Problem 3 - For Advanced Learners – home)
- * Generic Array-backed Stack data structure reused for multiple types with boundary checking.
- */
 public class GenericStack {
 
     public static class CustomStack<T> {
@@ -30,7 +26,7 @@ public class GenericStack {
                 throw new EmptyStackException();
             }
             T item = (T) elements[--size];
-            elements[size] = null; // Prevent memory leak
+            elements[size] = null;
             return item;
         }
 
@@ -62,12 +58,11 @@ public class GenericStack {
     public static void main(String[] args) {
         System.out.println("=== Generic Array-backed Stack ===");
 
-        // 1. Reusing CustomStack for String
         System.out.println("\n--- 1. Testing CustomStack<String> ---");
         CustomStack<String> bookStack = new CustomStack<>(2);
         bookStack.push("Java in Action");
         bookStack.push("Effective Java");
-        bookStack.push("Clean Architecture"); // Trigger dynamic resize
+        bookStack.push("Clean Architecture");
 
         System.out.println("Stack size: " + bookStack.size());
         System.out.println("Top element (peek): " + bookStack.peek());
@@ -75,14 +70,12 @@ public class GenericStack {
             System.out.println("Popped: " + bookStack.pop());
         }
 
-        // Test sensible handling of empty case
         try {
             bookStack.pop();
         } catch (EmptyStackException e) {
             System.out.println("Sensibly handled empty case: Caught EmptyStackException as expected!");
         }
 
-        // 2. Reusing CustomStack for Integer
         System.out.println("\n--- 2. Testing CustomStack<Integer> ---");
         CustomStack<Integer> numberStack = new CustomStack<>();
         for (int i = 10; i <= 50; i += 10) {

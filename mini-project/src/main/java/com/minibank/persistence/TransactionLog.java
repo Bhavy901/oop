@@ -6,10 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 
-/**
- * Practical 11 (Part B)
- * Transaction audit logger appending operation entries using Java NIO.
- */
 public class TransactionLog {
 
     public static synchronized void append(Path file, String line) throws IOException {

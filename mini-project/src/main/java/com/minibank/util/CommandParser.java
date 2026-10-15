@@ -3,10 +3,6 @@ package com.minibank.util;
 import com.minibank.model.Command;
 import com.minibank.model.TransactionType;
 
-/**
- * Practical 4 (Part B)
- * Parser converting raw user input lines (e.g. "DEPOSIT AC0001 500") into Command objects.
- */
 public class CommandParser {
 
     public static Command parse(String line) throws IllegalArgumentException {

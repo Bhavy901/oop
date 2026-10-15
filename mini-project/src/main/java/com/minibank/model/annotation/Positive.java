@@ -5,10 +5,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Practical 7 (Part B)
- * Validation annotation ensuring numerical field values are strictly greater than zero.
- */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Positive {

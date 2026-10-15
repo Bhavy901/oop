@@ -6,18 +6,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Practical 13 (Part B)
- * Generic type-safe Repository storing domain entities using reflection to discover @Id primary keys.
- */
 public class Repository<T> {
 
-    // Thread-safe internal storage
     private final Map<String, T> storage = new ConcurrentHashMap<>();
 
-    /**
-     * Extracts the @Id annotated field value via reflection.
-     */
     private String extractId(T entity) {
         if (entity == null) {
             throw new IllegalArgumentException("Entity cannot be null");
@@ -81,9 +73,6 @@ public class Repository<T> {
         storage.clear();
     }
 
-    /**
-     * Practical 13: Generic bounded method calculating statistical average.
-     */
     public static <N extends Number> double average(N[] values) {
         if (values == null || values.length == 0) return 0.0;
         double sum = 0.0;

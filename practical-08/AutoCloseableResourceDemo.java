@@ -1,8 +1,3 @@
-/**
- * Practical 8 - Part A (Problem 3 - For Advanced Learners – home)
- * AutoCloseable resource demonstrating automatic deterministic cleanup
- * with try-with-resources and exception suppression semantics.
- */
 public class AutoCloseableResourceDemo {
 
     public static class SecureDatabaseSession implements AutoCloseable {
@@ -48,14 +43,13 @@ public class AutoCloseableResourceDemo {
         System.out.println("2. Scenario B: Exception occurs inside try block (demonstrating cleanup & error preservation)");
         try (SecureDatabaseSession session = new SecureDatabaseSession("SESSION-BETA")) {
             session.executeQuery("UPDATE accounts SET balance = balance + 100");
-            session.executeQuery("SELECT * FROM CORRUPT_TABLE"); // Throws exception
+            session.executeQuery("SELECT * FROM CORRUPT_TABLE");
             session.executeQuery("UNREACHABLE CODE");
         } catch (Exception e) {
             System.out.println("\n[OUTER CATCH BLOCK] Caught primary exception:");
             System.out.println("  Exception Type: " + e.getClass().getName());
             System.out.println("  Message:        " + e.getMessage());
 
-            // Check for suppressed exceptions (if close() also threw an exception)
             Throwable[] suppressed = e.getSuppressed();
             if (suppressed.length > 0) {
                 System.out.println("  Suppressed exceptions during close: " + suppressed.length);

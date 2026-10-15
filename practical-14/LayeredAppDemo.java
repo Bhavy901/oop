@@ -2,13 +2,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Practical 14 - Part A (Problem 1)
- * Tiny Layered Architecture (Model -> Service -> UI/Test Runner) with assertions.
- */
 public class LayeredAppDemo {
 
-    // 1. Model Layer
     public static class Task {
         private final int id;
         private final String title;
@@ -34,7 +29,6 @@ public class LayeredAppDemo {
         }
     }
 
-    // 2. Service Layer
     public static class TaskService {
         private final List<Task> tasks = new ArrayList<>();
         private int idCounter = 100;
@@ -67,12 +61,10 @@ public class LayeredAppDemo {
         }
     }
 
-    // 3. Unit Test Runner (reproducing @Test behavior)
     public static void runSelfTests() {
         System.out.println("--- Running Unit Tests ---");
         TaskService service = new TaskService();
 
-        // Test 1: Adding a task increases the count
         int initialCount = service.getTaskCount();
         service.addTask("Complete OOP Practical File");
         if (service.getTaskCount() == initialCount + 1) {
@@ -81,10 +73,9 @@ public class LayeredAppDemo {
             System.err.println("  [FAIL] testAddTaskIncreasesCount");
         }
 
-        // Test 2: Invalid task action throws exception
         boolean caughtException = false;
         try {
-            service.addTask("   "); // Invalid title
+            service.addTask("   ");
         } catch (IllegalArgumentException e) {
             caughtException = true;
         }
@@ -94,10 +85,9 @@ public class LayeredAppDemo {
             System.err.println("  [FAIL] testAddInvalidTaskThrowsException");
         }
 
-        // Test 3: Completing an unknown task throws exception
         caughtException = false;
         try {
-            service.completeTask(9999); // Unknown id
+            service.completeTask(9999);
         } catch (IllegalArgumentException e) {
             caughtException = true;
         }
@@ -111,7 +101,6 @@ public class LayeredAppDemo {
     public static void main(String[] args) {
         System.out.println("=== Tiny Layered Application Demonstration ===");
 
-        // Run automated test suite
         runSelfTests();
 
         System.out.println("\n--- Layered Workflow Execution ---");

@@ -1,9 +1,5 @@
 package com.minibank.exception;
 
-/**
- * Practical 8 (Part B - Supplementary)
- * Thrown when an account withdrawal exceeds the maximum permissible daily limit.
- */
 public class DailyLimitExceededException extends BankException {
     private final long requested;
     private final long limit;

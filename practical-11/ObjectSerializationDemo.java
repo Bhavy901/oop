@@ -1,11 +1,6 @@
 import java.io.*;
 import java.util.Arrays;
 
-/**
- * Practical 11 - Part A (Problem 1)
- * Object Serialization and Deserialization using ObjectOutputStream / ObjectInputStream,
- * proving that persistent fields survive while transient fields do not.
- */
 public class ObjectSerializationDemo {
 
     public static class UserProfile implements Serializable {
@@ -13,7 +8,7 @@ public class ObjectSerializationDemo {
 
         private final String username;
         private final String email;
-        // transient field: will NOT be serialized
+
         private transient String temporarySessionToken;
 
         public UserProfile(String username, String email, String temporarySessionToken) {
@@ -55,7 +50,6 @@ public class ObjectSerializationDemo {
             System.out.println("  " + u);
         }
 
-        // 1. Serialize Array to File
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
             oos.writeObject(originalUsers);
             System.out.println("\nSuccessfully serialized array of UserProfiles to: " + file.getName());
@@ -63,7 +57,6 @@ public class ObjectSerializationDemo {
             System.err.println("Serialization error: " + e.getMessage());
         }
 
-        // 2. Deserialize Array from File
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             UserProfile[] loadedUsers = (UserProfile[]) ois.readObject();
 
@@ -80,7 +73,7 @@ public class ObjectSerializationDemo {
             System.err.println("Deserialization error: " + e.getMessage());
         } finally {
             if (file.exists()) {
-                file.delete(); // cleanup
+                file.delete();
             }
         }
     }

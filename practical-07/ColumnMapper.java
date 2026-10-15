@@ -6,10 +6,6 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Practical 7 - Part A (Problem 3 - For Advanced Learners – home)
- * Object-Relational / CSV column mapping using @Column reflection.
- */
 public class ColumnMapper {
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -44,7 +40,6 @@ public class ColumnMapper {
         try {
             T instance = clazz.getDeclaredConstructor().newInstance();
 
-            // Index map for headers
             Map<String, Integer> headerIndexMap = new HashMap<>();
             for (int i = 0; i < headers.length; i++) {
                 headerIndexMap.put(headers[i].trim().toLowerCase(), i);
@@ -64,7 +59,7 @@ public class ColumnMapper {
                             setFieldValue(instance, field, rawValue);
                         }
                     } else {
-                        // Decide how to handle missing column:
+
                         if (col.required()) {
                             System.err.println("WARNING: Required column '" + col.name() + "' was not found in headers!");
                         } else {

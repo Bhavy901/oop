@@ -6,10 +6,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 7 - Part A (Problem 1)
- * Reflection-based form validator using custom annotations @NotBlank and @MaxLength.
- */
 public class FormValidator {
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -25,7 +21,6 @@ public class FormValidator {
         String message() default "Length exceeds maximum allowed limit";
     }
 
-    // Sample form class annotated
     public static class SignupForm {
         @NotBlank(message = "Username is mandatory")
         @MaxLength(value = 10, message = "Username must not exceed 10 characters")
@@ -45,7 +40,6 @@ public class FormValidator {
         }
     }
 
-    // Checker that uses reflection to inspect annotations and validate
     public static List<String> validate(Object obj) {
         List<String> errors = new ArrayList<>();
         if (obj == null) {

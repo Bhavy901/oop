@@ -1,9 +1,5 @@
 import java.util.*;
 
-/**
- * Practical 12 - Part A (Problem 3 - For Advanced Learners – home)
- * Gaming Leaderboard ranking top players with custom tie-breaking Comparator.
- */
 public class Leaderboard {
 
     public record PlayerScore(String playerName, int score) {}
@@ -14,7 +10,6 @@ public class Leaderboard {
             list.add(new PlayerScore(entry.getKey(), entry.getValue()));
         }
 
-        // Sort descending by score, tie-break ascending by player name
         list.sort((p1, p2) -> {
             int scoreCompare = Integer.compare(p2.score(), p1.score());
             if (scoreCompare != 0) {
@@ -33,11 +28,11 @@ public class Leaderboard {
         Map<String, Integer> scores = new HashMap<>();
         scores.put("ShadowNinja", 2850);
         scores.put("PixelKnight", 3100);
-        scores.put("ViperStrike", 2850); // Tie with ShadowNinja
+        scores.put("ViperStrike", 2850);
         scores.put("AlphaWolf", 1950);
         scores.put("CyberMage", 3450);
         scores.put("ThunderBolt", 2400);
-        scores.put("BlazeFire", 3100);   // Tie with PixelKnight
+        scores.put("BlazeFire", 3100);
 
         System.out.println("Raw Player Scores Register (" + scores.size() + " active players):\n" + scores);
 

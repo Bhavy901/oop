@@ -1,10 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 9 - Part A (Problem 2)
- * Seat Booking Race: overselling without synchronization vs exact booking with synchronized.
- */
 public class SeatBookingRace {
 
     public static class UnsafeCinema {
@@ -13,7 +9,7 @@ public class SeatBookingRace {
 
         public boolean book(String userName) {
             if (seatsLeft > 0) {
-                // Introduce slight context switch delay to amplify race condition
+
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException ignored) {}
@@ -73,7 +69,6 @@ public class SeatBookingRace {
         System.out.println("Initial seats available: " + initialSeats);
         System.out.println("Concurrent users attempting to book: " + requestingUsers + "\n");
 
-        // 1. Unsafe Cinema (Without Synchronization)
         System.out.println("--- 1. Testing Unsafe Cinema ---");
         UnsafeCinema unsafeCinema = new UnsafeCinema();
         List<Thread> unsafeThreads = new ArrayList<>();
@@ -92,7 +87,6 @@ public class SeatBookingRace {
             System.out.println("  CRITICAL ERROR: Oversold seats due to lack of synchronization!\n");
         }
 
-        // 2. Safe Cinema (With Synchronization)
         System.out.println("\n--- 2. Testing Safe Synchronized Cinema ---");
         SafeCinema safeCinema = new SafeCinema();
         List<Thread> safeThreads = new ArrayList<>();

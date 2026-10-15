@@ -4,10 +4,6 @@ import com.minibank.model.annotation.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- * Practical 2, 3 & 11 (Part B)
- * Customer entity with encapsulated state, static ID generator, nested Address, and Cloneable.
- */
 public class Customer implements Cloneable, Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,7 +16,6 @@ public class Customer implements Cloneable, Serializable {
     private String mobile;
     private Address address;
 
-    // Static ID generator method (e.g. CUST101)
     private static synchronized String generateCustomerId() {
         return "CUST" + (++customerCounter);
     }
@@ -37,7 +32,6 @@ public class Customer implements Cloneable, Serializable {
         this(name, email, mobile, null);
     }
 
-    // Getters
     public String getCustomerId() {
         return customerId;
     }
@@ -62,7 +56,6 @@ public class Customer implements Cloneable, Serializable {
         this.address = address;
     }
 
-    // Practical 3: Public static nested class Address
     public static class Address implements Serializable {
         private static final long serialVersionUID = 1L;
 
@@ -86,7 +79,6 @@ public class Customer implements Cloneable, Serializable {
         }
     }
 
-    // Practical 3: clone() method
     @Override
     public Customer clone() {
         try {

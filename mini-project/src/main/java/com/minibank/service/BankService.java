@@ -22,11 +22,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Practical 14 (Part B)
- * Core business service layer orchestrating account lifecycle, validation,
- * transaction execution, persistence, and audit logging.
- */
 public class BankService {
 
     private final Repository<Account> accountRepository;
@@ -48,7 +43,6 @@ public class BankService {
         this(Paths.get("data", "accounts.dat"), Paths.get("data", "logs"));
     }
 
-    // Lifecycle: Load state on startup
     public void loadPersistedState() {
         try {
             List<Account> loaded = StatePersister.loadList(storageFile);
@@ -64,7 +58,6 @@ public class BankService {
         }
     }
 
-    // Lifecycle: Persist state on exit
     public void savePersistedState() {
         try {
             List<Account> accounts = accountRepository.findAll();
@@ -102,7 +95,6 @@ public class BankService {
             default -> throw new BankException("Unsupported account type: " + type + ". Choose SAVINGS, CURRENT, or FIXED_DEPOSIT.");
         };
 
-        // Validate annotations with reflection
         String[] validationErrors = AnnotationValidator.validate(account);
         if (validationErrors.length > 0) {
             throw new BankException("Validation failed: " + String.join(", ", validationErrors));

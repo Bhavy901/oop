@@ -1,15 +1,10 @@
-/**
- * Practical 9 - Part A (Problem 1)
- * Counter Race Condition demonstrating lost updates without synchronization vs correct totals with synchronized.
- */
 public class CounterRace {
 
-    // Unsynchronized Counter
     public static class UnsafeCounter {
         private int count = 0;
 
         public void increment() {
-            count++; // Non-atomic: read, modify, write
+            count++;
         }
 
         public int getCount() {
@@ -17,7 +12,6 @@ public class CounterRace {
         }
     }
 
-    // Synchronized Counter
     public static class SafeCounter {
         private int count = 0;
 
@@ -39,7 +33,6 @@ public class CounterRace {
         System.out.println("Configuration: " + numThreads + " threads, " + incrementsPerThread + " increments each.");
         System.out.println("Expected final count: " + expectedTotal + "\n");
 
-        // 1. Unsynchronized Execution
         UnsafeCounter unsafeCounter = new UnsafeCounter();
         Thread[] unsafeThreads = new Thread[numThreads];
         for (int i = 0; i < numThreads; i++) {
@@ -57,7 +50,6 @@ public class CounterRace {
         System.out.println("1. Unsynchronized Counter Result: " + unsafeCounter.getCount());
         System.out.println("   Lost updates: " + (expectedTotal - unsafeCounter.getCount()) + " (Race Condition occurred!)\n");
 
-        // 2. Synchronized Execution
         SafeCounter safeCounter = new SafeCounter();
         Thread[] safeThreads = new Thread[numThreads];
         for (int i = 0; i < numThreads; i++) {

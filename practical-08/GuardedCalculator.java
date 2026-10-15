@@ -1,12 +1,7 @@
 import java.util.Scanner;
 
-/**
- * Practical 8 - Part A (Problem 1)
- * Guarded Calculator with custom checked exception, multiple catch blocks, and finally block logging.
- */
 public class GuardedCalculator {
 
-    // Custom Exception
     public static class DivideByZeroException extends Exception {
         public DivideByZeroException(String message) {
             super(message);
@@ -34,7 +29,6 @@ public class GuardedCalculator {
         boolean success = false;
         int attempt = 0;
 
-        // Loop until a valid calculation succeeds
         while (!success) {
             attempt++;
             System.out.println("\n--- Attempt #" + attempt + " ---");

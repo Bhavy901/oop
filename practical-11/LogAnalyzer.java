@@ -5,10 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
-/**
- * Practical 11 - Part A (Problem 2)
- * Log file analyzer using Java NIO (Path, Files, BasicFileAttributes).
- */
 public class LogAnalyzer {
 
     public static void main(String[] args) throws IOException {
@@ -70,7 +66,6 @@ public class LogAnalyzer {
         System.out.println("Total Lines Scanned: " + totalLines);
         System.out.println("Total Matches Found: " + totalKeywordMatches);
 
-        // Cleanup temp files
         for (Path f : logFiles) Files.deleteIfExists(f);
         Files.deleteIfExists(tempDir);
     }
