@@ -1,0 +1,84 @@
+/**
+ * Practical 2 - Part A (Problem 1)
+ * Smart Thermostat with encapsulation, static state, and constructor chaining.
+ */
+public class Thermostat {
+
+    // (a) Fields
+    private String location;
+    private int temperature;
+    private static final int MIN = 16;
+    private static final int MAX = 30;
+    private static int activeCount = 0;
+
+    // (b) Constructor with location and startTemp
+    public Thermostat(String location, int startTemp) {
+        this.location = location;
+        if (startTemp >= MIN && startTemp <= MAX) {
+            this.temperature = startTemp;
+        } else {
+            this.temperature = 22;
+        }
+        activeCount++;
+    }
+
+    // (c) Constructor chaining with this(location, 22)
+    public Thermostat(String location) {
+        this(location, 22);
+    }
+
+    // (d) raise()
+    public void raise() {
+        if (this.temperature < MAX) {
+            this.temperature++;
+        } else {
+            System.out.println("Already at maximum (30)");
+        }
+    }
+
+    // (e) lower()
+    public void lower() {
+        if (this.temperature > MIN) {
+            this.temperature--;
+        } else {
+            System.out.println("Already at minimum (16)");
+        }
+    }
+
+    // (f) getTemperature() (no setter) and static getActiveCount()
+    public int getTemperature() {
+        return this.temperature;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public static int getActiveCount() {
+        return activeCount;
+    }
+
+    // (g) main
+    public static void main(String[] args) {
+        System.out.println("=== Smart Thermostat Simulation ===");
+        Thermostat t1 = new Thermostat("Living Room", 24);
+        Thermostat t2 = new Thermostat("Bedroom");
+
+        System.out.println("Thermostat 1 (" + t1.getLocation() + ") initial temp: " + t1.getTemperature() + "°C");
+        System.out.println("Thermostat 2 (" + t2.getLocation() + ") initial temp: " + t2.getTemperature() + "°C");
+
+        System.out.println("\nRaising temperature on Thermostat 1 (10 times):");
+        for (int i = 1; i <= 10; i++) {
+            t1.raise();
+            System.out.println("Step " + i + ": temp = " + t1.getTemperature() + "°C");
+        }
+
+        System.out.println("\nLowering temperature on Thermostat 1 (20 times):");
+        for (int i = 1; i <= 20; i++) {
+            t1.lower();
+            System.out.println("Step " + i + ": temp = " + t1.getTemperature() + "°C");
+        }
+
+        System.out.println("\nActive thermostats count: " + Thermostat.getActiveCount());
+    }
+}

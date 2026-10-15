@@ -1,0 +1,30 @@
+# Compiled class files
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+
+# Data & Persistence generated at runtime
+*.dat
+logs/
+reports/
+summary.txt
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Build artifacts
+bin/
+out/
+target/
